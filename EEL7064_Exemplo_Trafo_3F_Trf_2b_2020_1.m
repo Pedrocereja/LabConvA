@@ -22,6 +22,8 @@ Vtnbt = 240*sqrt(3)       % conex�o Y
 Itnat = Stn/(sqrt(3)*Vtnat)
 Itnbt = Stn/(sqrt(3)*Vtnbt)
 
+teste
+
 disp('   *  Medidas de pot�ncia ativa - m�t. dos 2 watt�metros, transformador trif�sico  *')
 disp('   *  Ensaio de CA (lado de BT) *')
 W1 = -474.72
