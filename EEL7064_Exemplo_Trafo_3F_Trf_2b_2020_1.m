@@ -7,6 +7,8 @@ clear all;
 close all;
 clc;
 
+format shortEng
+
 % constantes
 j = sqrt(-1);
 radeg = 180.00/pi;
@@ -21,8 +23,6 @@ Vtnat = 2400              % conex�o Delta
 Vtnbt = 240*sqrt(3)       % conex�o Y
 Itnat = Stn/(sqrt(3)*Vtnat)
 Itnbt = Stn/(sqrt(3)*Vtnbt)
-
-teste
 
 disp('   *  Medidas de pot�ncia ativa - m�t. dos 2 watt�metros, transformador trif�sico  *')
 disp('   *  Ensaio de CA (lado de BT) *')
@@ -61,8 +61,8 @@ Vfbta = radeg*angle(Vfbt)
 
 disp('   *  Trafo 3F: Fasores tens�o de linha no lado de BT  *')
 VLbt = Vfbt*sqrt(3)*(cos(30/radeg) + j*sin(30/radeg));
-VLbtm = abs(VLbt)
-VLbta = radeg*angle(VLbt)
+Vlinha_bt_modulo = abs(VLbt)
+Vlinha_bt_angulo = radeg*angle(VLbt)
 
 disp('   *  Trafo 3F: Fasores corrente de linha no lado de BT  *')
 ILbt = Ic0*Af;
@@ -148,13 +148,13 @@ Zeqbt = (Zeqat*(Vtnbt/(Vtnat))^2)/3
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 disp('   *********************************************************************************+++++++++**  ')
-disp('   *  95% da carga nominal no lado de BT, fator de pot�ncia 0,8 atrasado *')
-Scr = 0.95*Stn/3
+disp('   *  100% da carga nominal no lado de BT, fator de pot�ncia 0,85 adiantado *')
+Scr = 1*Stn/3
 Vcr = Vtnbt/sqrt(3)
-fpcr = 0.8      % atrasado
+fpcr = 0.85      % adiantado
 Pcr = Scr*fpcr;
-Qcr = Scr*sin(acos(fpcr));
-Icr = (Scr/Vcr)*(cos(acos(fpcr))-j*sin(acos(fpcr)));
+Qcr = -Scr*sin(acos(fpcr)); % Aqui mudamos o sinal para representar o FP adiantado
+Icr = (Scr/Vcr)*(cos(acos(fpcr))+j*sin(acos(fpcr)));
 Icm = abs(Icr)
 Ica = (180/pi)*angle(Icr)
 Scr = Vcr*conj(Icr)
@@ -206,8 +206,8 @@ Vfbta = radeg*angle(Vfbt)
 
 disp('   *  Trafo 3F: Fasores tens�o de linha no lado de BT  *')
 VLbt = Vfbt*sqrt(3)*(cos(30/radeg) + j*sin(30/radeg));
-VLbtm = abs(VLbt)
-VLbta = radeg*angle(VLbt)
+Vlinha_bt_modulo = abs(VLbt)
+Vlinha_bt_angulo = radeg*angle(VLbt)
 
 disp('   *  Trafo 3F: Fasores corrente de linha no lado de BT  *')
 ILbt = I1*Af;
