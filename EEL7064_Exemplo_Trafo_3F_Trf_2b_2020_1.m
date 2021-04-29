@@ -55,36 +55,36 @@ S0m = abs(S0)
 S0a = radeg*angle(S0)
 
 disp('   *  trafo 3F: fase "a"  *')
-Vfbt = (Vtnbt/sqrt(3))*Af;
-Vfbtm = abs(Vfbt)
-Vfbta = radeg*angle(Vfbt)
+Vfase_bt = (Vtnbt/sqrt(3))*Af;
+Vfase_bt_modulo = abs(Vfase_bt)
+Vfase_bt_angulo = radeg*angle(Vfase_bt)
 
 disp('   *  Trafo 3F: Fasores tens�o de linha no lado de BT  *')
-VLbt = Vfbt*sqrt(3)*(cos(30/radeg) + j*sin(30/radeg));
-Vlinha_bt_modulo = abs(VLbt)
-Vlinha_bt_angulo = radeg*angle(VLbt)
+Vlinha_bt = Vfase_bt*sqrt(3)*(cos(30/radeg) + j*sin(30/radeg));
+Vlinha_bt_modulo = abs(Vlinha_bt)
+Vlinha_bt_angulo = radeg*angle(Vlinha_bt)
 
 disp('   *  Trafo 3F: Fasores corrente de linha no lado de BT  *')
-ILbt = Ic0*Af;
-ILbtm = abs(ILbt)
-ILbta = radeg*angle(ILbt)
+Ilinha_bt = Ic0*Af;
+Ilinha_bt_modulo = abs(Ilinha_bt)
+Ilinha_bt_angulo = radeg*angle(Ilinha_bt)
 
 disp('   *  Trafo 3F: Pot�ncia complexa no lado de BT  *')
-S03F = sum(Vfbt.*conj(ILbt))
+S03F = sum(Vfase_bt.*conj(Ilinha_bt))
 
 disp('   *  Trafo 3F: medi��o de pot�ncia ativa via m�todo dos 2 watt�metros no lado de BT  *')
 disp('   *  Comprova��o atrav�s da solu��o de um circuito trif�sico  *')
-Vab = VLbt(1)
+Vab = Vlinha_bt(1)
 Vabm = abs(Vab)
 Vaba = radeg*angle(Vab)
-Ia = ILbt(1)
+Ia = Ilinha_bt(1)
 Iam = abs(Ia)
 Iaa = radeg*angle(Ia)
 
-Vcb = -VLbt(2)
+Vcb = -Vlinha_bt(2)
 Vcbm = abs(Vcb)
 Vcba = radeg*angle(Vcb)
-Ic = ILbt(3)
+Ic = Ilinha_bt(3)
 Icm = abs(Ic)
 Ica = radeg*angle(Ic)
 W1 = abs(Vab)*abs(Ia)*cos(angle(Vab)-angle(Ia))
@@ -200,35 +200,35 @@ Reg = 100*(abs(V10)-abs(Vcr))/abs(Vcr)
 disp('***********************************************************')
 
 disp('   *  trafo 3F: fase "a"  *')
-Vfbt = V1*Af;
-Vfbtm = abs(Vfbt)
-Vfbta = radeg*angle(Vfbt)
+Vfase_bt = V1*Af;
+Vfase_bt_modulo = abs(Vfase_bt)
+Vfase_bt_angulo = radeg*angle(Vfase_bt)
 
 disp('   *  Trafo 3F: Fasores tens�o de linha no lado de BT  *')
-VLbt = Vfbt*sqrt(3)*(cos(30/radeg) + j*sin(30/radeg));
-Vlinha_bt_modulo = abs(VLbt)
-Vlinha_bt_angulo = radeg*angle(VLbt)
+Vlinha_bt = Vfase_bt*sqrt(3)*(cos(30/radeg) + j*sin(30/radeg));
+Vlinha_bt_modulo = abs(Vlinha_bt)
+Vlinha_bt_angulo = radeg*angle(Vlinha_bt)
 
 disp('   *  Trafo 3F: Fasores corrente de linha no lado de BT  *')
-ILbt = I1*Af;
-ILbtm = abs(ILbt)
-ILbta = radeg*angle(ILbt)
+Ilinha_bt = I1*Af;
+Ilinha_bt_modulo = abs(Ilinha_bt)
+Ilinha_bt_angulo = radeg*angle(Ilinha_bt)
 
 disp('   *  Trafo 3F: Pot�ncia complexa no lado de BT  *')
-S13F = sum(Vfbt.*conj(ILbt))
+S13F = sum(Vfase_bt.*conj(Ilinha_bt))
 
 disp('   *  Trafo 3F: medi��o via m�todo dos 2 watt�metros no lado de BT  *')
-Vab = VLbt(1)
+Vab = Vlinha_bt(1)
 Vabm = abs(Vab)
 Vaba = radeg*angle(Vab)
-Ia = ILbt(1)
+Ia = Ilinha_bt(1)
 Iam = abs(Ia)
 Iaa = radeg*angle(Ia)
 
-Vcb = -VLbt(2)
+Vcb = -Vlinha_bt(2)
 Vcbm = abs(Vcb)
 Vcba = radeg*angle(Vcb)
-Ic = ILbt(3)
+Ic = Ilinha_bt(3)
 Icm = abs(Ic)
 Ica = radeg*angle(Ic)
 W1 = abs(Vab)*abs(Ia)*cos(angle(Vab)-angle(Ia))
