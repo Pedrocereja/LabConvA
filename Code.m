@@ -149,7 +149,7 @@ Zeqbt = (Zeqat*(Vtnbt/(Vtnat))^2)/3;
 
 %******************************************************************************+++++++++**  ')
 %100% da carga nominal no lado de BT, fator de pot�ncia 0,85 atrasado *')
-atraso = 1; % -1 para adiantado, 1 para atrasado
+atraso = 1 % -1 para adiantado, 1 para atrasado
 carga_nominal = .85;
 Scr = carga_nominal*Stn/3;
 tensao_carga = Vtnbt/sqrt(3);
@@ -181,7 +181,7 @@ V1 = I1*(Zeqbt/2) + Vn;
 V1m = abs(V1);
 V1a = radeg*angle(V1);
 
-S1 = V1*conj(I1);
+S1 = V1*conj(I1)
 cosfig = cos(atan(imag(S1)/real(S1)));
 S13F = 3*S1;
 S13Fm = abs(S13F);
