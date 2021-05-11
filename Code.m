@@ -5,7 +5,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clear all;
 close all;
-clc;
+%clc;
 
 format shortEng;
 
@@ -149,9 +149,9 @@ Zeqbt = (Zeqat*(Vtnbt/(Vtnat))^2)/3;
 
 %********************************************************************************
 %'carga_nominal'% da carga nominal no lado de BT, fator de potencia 'fator_pot_carga' 'atraso'
-atraso = 1; % -1 para adiantado, 1 para atrasado
-carga_nominal = input('Insira o valor da carga nominal:');
-Scr = carga_nominal * Stn/3;
+atraso = 1; % -1 == adiantado; 1 == atrasado
+carga_nominal = .85;
+Scr = carga_nominal * Stn/3;      
 tensao_carga = Vtnbt/sqrt(3);
 fator_pot_carga = 0.85;
 Pcr = Scr*fator_pot_carga;
@@ -187,7 +187,7 @@ S13F = 3*S1;
 S13Fm = abs(S13F);
 S13Fa = radeg*angle(S13F);
 
-%perdas no transformador monof�sico
+%perdas no transformador monofasico
 St = abs(I1)^2*(Zeqbt/2) + abs(Icr)^2*(Zeqbt/2) + (conj(Ymbt)*abs(Vn)^2);
 St3F = 3*St;
 
@@ -197,7 +197,7 @@ n = (real(Scr3F)/real(S13F))*100;
 %tensao de circuito aberto com V1 constante na entrada do autotrafo
 V10 = V1*((1/Ymbt)/((1/Ymbt)+(Zeqbt/2)));
 %regula��o
-regulacao = 100*(abs(V10)-abs(tensao_carga))/abs(tensao_carga)
+regulacao = 100*(abs(V10)-abs(tensao_carga))/abs(tensao_carga);
 
 %***********************************************************
 
