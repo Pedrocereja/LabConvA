@@ -15,7 +15,7 @@ radeg = 180.00/pi;
 a = -(1/2) + j*(sqrt(3)/2);
 Af = [ 1;  a^2;  a; ];
 
-% Valores nominais do transformador trif�sico *')
+% Valores nominais do transformador trif�sico
 
 %transformador trif�sico
 Stn = 150e3;
@@ -24,11 +24,11 @@ Vtnbt = 240*sqrt(3);       % conex�o Y
 Itnat = Stn/(sqrt(3)*Vtnat);
 Itnbt = Stn/(sqrt(3)*Vtnbt);
 
-%Medidas de potencia ativa - m�t. dos 2 watt-metros, transformador trif�sico
-%Ensaio de CA (lado de BT) *')
+%Medidas de potencia ativa - met. dos 2 watt-metros, transformador trif�sico
+%Ensaio de CA (lado de BT)
 W1 = -474.72;
 W2 = 1503.70;
-Pw3F = W1 + W2;       %   Perda 3F no n�cleo
+Pw3F = W1 + W2;       %   Perda 3F no nucleo
 Qw3F = sqrt(3)*(W2-W1);
 Sw3F = Pw3F + j*Qw3F;
 Ymbt = conj(Sw3F/3)/(Vtnbt/sqrt(3))^2;    % em cada fase da conex�o Y
@@ -90,7 +90,7 @@ Ica = radeg*angle(Ic);
 W1 = abs(Vab)*abs(Ia)*cos(angle(Vab)-angle(Ia));
 W2 = abs(Vcb)*abs(Ic)*cos(angle(Vcb)-angle(Ic));
 
-%Trafo 3F: pot�ncias ativa e reatva totais (m�t. dos 2 watt�metros)
+%Trafo 3F: potencias ativa e reatva totais (met. dos 2 watt�metros)
 P03F = W1 + W2;
 Q03F = sqrt(3)*(W2-W1);
 S03F = P03F + j*Q03F;
@@ -99,7 +99,7 @@ Ymbt = 1/Zmbt;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Ensaio CC: trafo 3F, Inom no lado de AT, lado de BT em CC
-%Trafo 3F: Fasores tens�o de linha no lado de AT
+%Trafo 3F: Fasores tensao de linha no lado de AT
 VLat = Vcc*Af*(cos(30/radeg) + j*sin(30/radeg));
 VLatm = abs(VLat);
 VLata = radeg*angle(VLat);
@@ -114,10 +114,10 @@ ILat = Itnat*(cos(angle(Zeqat)) + j*sin(angle(Zeqat)))*Af;
 ILatm = abs(ILat);
 ILata = radeg*angle(ILat);
 
-%Trafo 3F: Pot�ncia complexa no lado de BT
+%Trafo 3F: potencia complexa no lado de BT
 S3F = sum(Vfat.*conj(ILat));
 
-%Trafo 3F: medi��o via m�todo dos 2 watt�metros no lado de BT
+%Trafo 3F: medi��o via metodo dos 2 watt�metros no lado de BT
 Vab = VLat(1);
 Vabm = abs(Vab);
 Vaba = radeg*angle(Vab);
@@ -134,24 +134,24 @@ Ica = radeg*angle(Ic);
 W1 = abs(Vab)*abs(Ia)*cos(angle(Vab)-angle(Ia));
 W2 = abs(Vcb)*abs(Ic)*cos(angle(Vcb)-angle(Ic));
 
-%Trafo 3F: pot�ncias ativa e reatva totais (m�t. dos 2 watt�metros)
+%Trafo 3F: potencias ativa e reatva totais (met. dos 2 watt�metros)
 Pc3F = W1 + W2;
 Qc3F = sqrt(3)*abs((W2-W1));
 Sc3F = Pc3F + j*Qc3F;
 Sc3Fm = abs(Sc3F);
 Sc3Fa = radeg*angle(Sc3F);
 
-%Trafo 3F: Imped�ncia dos enrolamentos (via pot�ncia complexa total)
+%Trafo 3F: Impedancia dos enrolamentos (via potencia complexa total)
 Zeqat = Vcc^2 / conj(Sc3F/3);
 Zeqbt = (Zeqat*(Vtnbt/(Vtnat))^2)/3;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%******************************************************************************+++++++++**  ')
-%100% da carga nominal no lado de BT, fator de pot�ncia 0,85 atrasado *')
-atraso = 1 % -1 para adiantado, 1 para atrasado
-carga_nominal = .85;
-Scr = carga_nominal*Stn/3;
+%********************************************************************************
+%'carga_nominal'% da carga nominal no lado de BT, fator de potencia 'fator_pot_carga' 'atraso'
+atraso = 1; % -1 para adiantado, 1 para atrasado
+carga_nominal = input('Insira o valor da carga nominal:');
+Scr = carga_nominal * Stn/3;
 tensao_carga = Vtnbt/sqrt(3);
 fator_pot_carga = 0.85;
 Pcr = Scr*fator_pot_carga;
@@ -162,12 +162,12 @@ Ica = (180/pi)*angle(Icr);
 Scr = tensao_carga*conj(Icr);
 Scr3F = 3*Scr;
 
-%mped�ncia equivalente a carga nominal no lado de BT *')
+%Impedancia equivalente a carga nominal no lado de BT
 Zcr = abs(tensao_carga)^2/conj(Scr);
 Zcrm = abs(Zcr);
 Zcra = radeg*angle(Scr);
 
-%tens�o e corrente no n�cleo do trafo
+%tensao e corrente no nucleo do trafo
 Vn = Icr*(Zeqbt/2) + tensao_carga;
 Vnm = abs(Vn);
 Vna = radeg*angle(Vn);
@@ -181,23 +181,23 @@ V1 = I1*(Zeqbt/2) + Vn;
 V1m = abs(V1);
 V1a = radeg*angle(V1);
 
-S1 = V1*conj(I1)
+S1 = V1*conj(I1);
 cosfig = cos(atan(imag(S1)/real(S1)));
 S13F = 3*S1;
 S13Fm = abs(S13F);
 S13Fa = radeg*angle(S13F);
 
-%perdas no transformador monof�sico *')
+%perdas no transformador monof�sico
 St = abs(I1)^2*(Zeqbt/2) + abs(Icr)^2*(Zeqbt/2) + (conj(Ymbt)*abs(Vn)^2);
 St3F = 3*St;
 
-%rendimento do trafo *')
+%rendimento do trafo
 n = (real(Scr3F)/real(S13F))*100;
 
-%tens�o de circuito aberto com V1 constante na entrada do autotrafo
+%tensao de circuito aberto com V1 constante na entrada do autotrafo
 V10 = V1*((1/Ymbt)/((1/Ymbt)+(Zeqbt/2)));
 %regula��o
-Reg = 100*(abs(V10)-abs(tensao_carga))/abs(tensao_carga);
+regulacao = 100*(abs(V10)-abs(tensao_carga))/abs(tensao_carga)
 
 %***********************************************************
 
@@ -206,7 +206,7 @@ Vfase_bt = V1*Af;
 Vfase_bt_modulo = abs(Vfase_bt);
 Vfase_bt_angulo = radeg*angle(Vfase_bt);
 
-%Trafo 3F: Fasores tens�o de linha no lado de BT
+%Trafo 3F: Fasores tensao de linha no lado de BT
 Vlinha_bt = Vfase_bt*sqrt(3)*(cos(30/radeg) + j*sin(30/radeg));
 Vlinha_bt_modulo = abs(Vlinha_bt);
 Vlinha_bt_angulo = radeg*angle(Vlinha_bt);
@@ -216,10 +216,10 @@ Ilinha_bt = I1*Af;
 Ilinha_bt_modulo = abs(Ilinha_bt);
 Ilinha_bt_angulo = radeg*angle(Ilinha_bt);
 
-%Trafo 3F: Pot�ncia complexa no lado de BT
+%Trafo 3F: potencia complexa no lado de BT
 S13F = sum(Vfase_bt.*conj(Ilinha_bt));
 
-%Trafo 3F: medi��o via m�todo dos 2 watt�metros no lado de BT
+%Trafo 3F: medi��o via metodo dos 2 watt�metros no lado de BT
 Vab = Vlinha_bt(1);
 Vabm = abs(Vab);
 Vaba = radeg*angle(Vab);
@@ -236,10 +236,10 @@ Ica = radeg*angle(Ic);
 W1 = abs(Vab)*abs(Ia)*cos(angle(Vab)-angle(Ia));
 W2 = abs(Vcb)*abs(Ic)*cos(angle(Vcb)-angle(Ic));
 
-%Trafo 3F: pot�ncias ativa e reatva totais (m�t. dos 2 watt�metros)
+%Trafo 3F: potencias ativa e reatva totais (met. dos 2 watt�metros)
 Pw3F = W1 + W2;
 Qw3F = sqrt(3)*(W2-W1);
 Sw3F = Pw3F + j*Qw3F;
 
-%perdas no transformador trif�sico *')
+%perdas no transformador trif�sico
 St3F = 3*abs(I1)^2*(Zeqbt/2) + 3*abs(Icr)^2*(Zeqbt/2) + 3*(conj(Ymbt)*abs(Vn)^2);
