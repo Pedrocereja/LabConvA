@@ -9,40 +9,60 @@ close all;
 
 format shortEng;
 
+Item = 3; % 2==Parte 1.2; 3==Parte 1.3;
+
 % constantes
 j = sqrt(-1);
 radeg = 180.00/pi;
 a = -(1/2) + j*(sqrt(3)/2);
 Af = [ 1;  a^2;  a; ];
 
-% Valores nominais do transformador trif�sico
+% Valores nominais do transformador trifasico
 
-%transformador trif�sico
-Stn = 150e3;
-Vtnat = 2400;              % conex�o Delta
-Vtnbt = 240*sqrt(3);       % conex�o Y
-Itnat = Stn/(sqrt(3)*Vtnat);
-Itnbt = Stn/(sqrt(3)*Vtnbt);
+%transformador trifasico
+if Item == 2
+    Stn = 150e3;
+    Vtnat = 2400;              % conexao Delta
+    Vtnbt = 240*sqrt(3);       % conexao Y
+    Itnat = Stn/(sqrt(3)*Vtnat);
+    Itnbt = Stn/(sqrt(3)*Vtnbt);
+elseif Item == 3 %Em construção
+    Stn = 54.62e3;
+    Vtnat = 380/sqrt(3);       % conexao Y
+    Vtnbt = 220*sqrt(3);       % conexao Y
+    Itnat = Stn/(sqrt(3)*Vtnat);
+    Itnbt = Stn/(sqrt(3)*Vtnbt);
+endif
 
-%Medidas de potencia ativa - met. dos 2 watt-metros, transformador trif�sico
+%Medidas de potencia ativa - met. dos 2 watt-metros, transformador trifasico
 %Ensaio de CA (lado de BT)
 W1 = -474.72;
 W2 = 1503.70;
 Pw3F = W1 + W2;       %   Perda 3F no nucleo
 Qw3F = sqrt(3)*(W2-W1);
 Sw3F = Pw3F + j*Qw3F;
-Ymbt = conj(Sw3F/3)/(Vtnbt/sqrt(3))^2;    % em cada fase da conex�o Y
+Ymbt = conj(Sw3F/3)/(Vtnbt/sqrt(3))^2;    % em cada fase da conexao Y
 
 %Ensaio de CC (lado de AT) 
-
-W1 = 2128.60;
-W2 = 721.44;
-Vcc = 60;
-Pw3F = W1 + W2;
-Qw3F = sqrt(3)*(W2-W1);
-Sw3F = Pw3F + j*Qw3F;
-Zeqat = conj(Sw3F/3)/abs(Itnat/sqrt(3))^2;
-Zeqbt = Zeqat*((Vtnbt/sqrt(3))/Vtnat)^2;
+if Item == 2
+    W1 = 2128.60;
+    W2 = 721.44;
+    Vcc = 60;
+    Pw3F = W1 + W2;
+    Qw3F = sqrt(3)*(W2-W1);
+    Sw3F = Pw3F + j*Qw3F;
+    Zeqat = conj(Sw3F/3)/abs(Itnat/sqrt(3))^2;
+    Zeqbt = Zeqat*((Vtnbt/sqrt(3))/Vtnat)^2;
+elseif Item == 3
+    W1 = -100;
+    W2 = 170;
+    Vcc = 5.7;
+    Pw3F = W1 + W2;
+    Qw3F = sqrt(3)*(W2-W1);
+    Sw3F = Pw3F + j*Qw3F;
+    Zeqat = conj(Sw3F/3)/abs(Itnat/sqrt(3))^2;
+    Zeqbt = Zeqat*((Vtnbt/sqrt(3))/Vtnat)^2;
+endif
 
 %Ensaio CA: trafo 3F, Vnom no lado de BT, lado de AT em CA
 %trafo 3F: fase "a"
@@ -73,7 +93,7 @@ Ilinha_bt_angulo = radeg*angle(Ilinha_bt);
 S03F = sum(Vfase_bt.*conj(Ilinha_bt));
 
 %Trafo 3F: medicao de potencia ativa via metodo dos 2 wattimetros no lado de BT
-%Comprovacao atrav�s da solu��o de um circuito trif�sico
+%Comprovacao atrav�s da solu��o de um circuito trifasico
 Vab = Vlinha_bt(1);
 Vabm = abs(Vab);
 Vaba = radeg*angle(Vab);
@@ -241,5 +261,5 @@ Pw3F = W1 + W2;
 Qw3F = sqrt(3)*(W2-W1);
 Sw3F = Pw3F + j*Qw3F;
 
-%perdas no transformador trif�sico
+%perdas no transformador trifasico
 St3F = 3*abs(I1)^2*(Zeqbt/2) + 3*abs(Icr)^2*(Zeqbt/2) + 3*(conj(Ymbt)*abs(Vn)^2);
