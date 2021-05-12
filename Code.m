@@ -169,8 +169,8 @@ Zeqbt = (Zeqat*(Vtnbt/(Vtnat))^2)/3;
 
 %********************************************************************************
 %'carga_nominal'% da carga nominal no lado de BT, fator de potencia 'fator_pot_carga' 'atraso'
-atraso = 1; % -1 == adiantado; 1 == atrasado
-carga_nominal = .85;
+atraso = -1; % -1 == adiantado; 1 == atrasado
+carga_nominal = 1;
 Scr = carga_nominal * Stn/3;      
 tensao_carga = Vtnbt/sqrt(3);
 fator_pot_carga = 0.85;
